@@ -1,0 +1,2136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Consulta Preconcepcional</title>
+    
+    <!-- LLAMAR AL ARCHIVO CSS -->
+    <link rel="stylesheet" href="Estilos.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <!-- MENÚ HAMBURGUESA -->
+            <div class="hamburger-menu">
+                <button class="hamburger-btn" onclick="toggleMenu()">
+                    <div class="hamburger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    Menú
+                </button>
+                
+                <!-- MENÚ DESPLEGABLE (SIN BUSCADOR AHORA) -->
+                <div class="dropdown-menu" id="dropdownMenu">
+                    
+                    <!-- INICIO -->
+                    <a href="#" class="menu-item menu-item-principal" onclick="showSection('home'); closeMenu(); return false;">
+                        <span class="menu-icon">🏠</span>
+                        Inicio
+                    </a>
+                    
+                    <!-- SECCIÓN PACIENTES -->
+                    <div class="menu-section">
+                        <a href="#pacientes" class="menu-section-title clickeable" onclick="toggleMenuSection(this); return false;">
+                            <span class="menu-icon">👩🏻‍🍼</span>
+                            ¿Quieres ser mamá?
+                            <span class="toggle-icon">▼</span>
+                        </a>
+                        <div class="menu-subsections">
+                            <a href="#" class="menu-item" onclick="showSection('pacientes', true); closeMenu(); return false;">¿Qué es la consulta?</a>
+                            <a href="#" class="menu-item" onclick="showSection('pacientes'); scrollToSection('timeline'); closeMenu(); return false;">Línea de tiempo</a>
+                            <a href="#" class="menu-item" onclick="showSection('pacientes'); scrollToSection('componentes'); closeMenu(); return false;">Componentes</a>
+                            <a href="#" class="menu-item" onclick="showSection('pacientes'); scrollToSection('tu-derecho'); closeMenu(); return false;">Tu derecho</a>
+                            <a href="#" class="menu-item" onclick="showSection('pacientes'); scrollToSection('recursos'); closeMenu(); return false;">Recursos</a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-section">
+                        <a href="#" onclick="toggleMenuSection(this); return false;" class="menu-section-title">
+                            <span class="menu-icon">👨🏻‍🍼</span>
+                            ¿Quieres ser papá?
+                            <span class="toggle-icon">▼</span>
+                        </a>
+                        <div class="menu-subsections">
+                            <a href="#" onclick="showSection('papas', true); closeMenu(); return false;" class="menu-item">Importancia para el hombre</a>
+                            <a href="#" onclick="showSection('papas'); scrollToSection('apoyo-pareja'); closeMenu(); return false;" class="menu-item">Apoyo a la pareja</a>
+                            <a href="#" onclick="showSection('papas'); scrollToSection('recursos-papas'); closeMenu(); return false;" class="menu-item">Recursos</a>
+                        </div>
+                    </div>
+
+                    <!-- SECCIÓN PROFESIONALES -->
+                    <div class="menu-section">
+                        <a href="#profesionales" class="menu-section-title clickeable" onclick="toggleMenuSection(this); return false;">
+                            <span class="menu-icon">👨‍⚕️</span>
+                            Para Profesionales
+                            <span class="toggle-icon">▼</span>
+                        </a>
+                        <div class="menu-subsections">
+                            <a href="#" class="menu-item" onclick="showSection('profesionales', true); closeMenu(); return false;">Guía rápida</a>
+                            <a href="#" class="menu-item" onclick="showSection('profesionales'); scrollToSection('laboratorios'); closeMenu(); return false;">Laboratorios</a>
+                            <a href="#" class="menu-item" onclick="showSection('profesionales'); scrollToSection('vacunacion'); closeMenu(); return false;">Vacunación</a>
+                            <a href="#" class="menu-item" onclick="showSection('profesionales'); scrollToSection('suplementacion'); closeMenu(); return false;">Suplementación</a>
+                            <a href="#" class="menu-item" onclick="showSection('profesionales'); scrollToSection('teratogenos'); closeMenu(); return false;">Teratógenos</a>
+                            <a href="#" class="menu-item" onclick="showSection('profesionales'); scrollToSection('formato-hc'); closeMenu(); return false;">Formato HC</a>
+                            <a href="#" class="menu-item" onclick="showSection('profesionales'); scrollToSection('checklist'); closeMenu(); return false;">Checklist</a>
+                            <a href="#" class="menu-item" onclick="showSection('profesionales'); scrollToSection('recursos-profesionales'); closeMenu(); return false;">Recursos</a>
+                        </div>
+                    </div>
+
+                    <!-- SECCIÓN INSTITUCIONES -->
+                    <div class="menu-section">
+                        <a href="#instituciones" class="menu-section-title clickeable" onclick="toggleMenuSection(this); return false;">
+                            <span class="menu-icon">🏥</span>
+                            Para Instituciones
+                            <span class="toggle-icon">▼</span>
+                        </a>
+                        <div class="menu-subsections">
+                            <a href="#" class="menu-item" onclick="showSection('instituciones', true); closeMenu(); return false;">¿Por qué incluirlo?</a>
+                            <a href="#" class="menu-item" onclick="showSection('instituciones'); scrollToSection('normativa'); closeMenu(); return false;">Normativa</a>
+                            <a href="#" class="menu-item" onclick="showSection('instituciones'); scrollToSection('recursos-instituciones'); closeMenu(); return false;">Recursos</a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- TÍTULO -->
+            <div class="header-title">
+                <h1>Consulta Preconcepcional</h1>
+                <p>Tu derecho a un embarazo saludable y planificado</p>
+            </div>
+
+            <!-- BUSCADOR A LA DERECHA -->
+            <div class="header-search">
+                <input type="text" id="searchInput" placeholder="Buscar..." onkeypress="if(event.key === 'Enter') { event.preventDefault(); buscarEnPagina(); }">
+<button onclick="buscarEnPagina()" style="background: none; border: none; cursor: pointer; font-size: 1.3rem; padding: 0; position: absolute; right: 1rem;">🔍</button>
+            </div>
+        </div>
+    </header>
+
+        <!-- MAIN CONTAINER -->
+    <div class="container">
+
+        <!-- ========================================
+            PÁGINA DE INICIO (HOME)
+        ======================================== -->
+        <div id="home" class="section active">
+            
+            <!-- HERO PRINCIPAL -->
+            <div class="hero-home">
+                <div class="hero-content">
+                    <h1 class="hero-title">Planifica tu embarazo con información confiable</h1>
+                    <p class="hero-subtitle">La consulta preconcepcional es tu derecho. Prepara tu cuerpo, previene riesgos y asegura un embarazo saludable.</p>
+                </div>
+                
+                
+                <!-- ESPACIO PARA IMAGEN HERO -->
+                <div class="hero-image">
+                    <!-- Imagen sugerida: Mujer joven sonriendo, mirando al futuro, ambiente luminoso -->
+                    <img src="Imagenes/Embarazo-imagen-1.png" alt="Mujer planificando embarazo" style="width: 100%; height: auto; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+                </div>
+            </div>
+
+                <div class="card">   
+                    <div class="hero-buttons">
+                        <button class="btn-hero btn-secondary" onclick="showSection('pacientes')">
+                            <span class="btn-icon">👩🏻‍🍼</span>
+                            Quiero ser mamá
+                        </button>
+                        <button class="btn-hero btn-azul" onclick="showSection('papas')">
+                            <span class="btn-icon">👨🏻‍🍼</span>
+                            Quiero ser papá
+                        </button>
+                        <button class="btn-hero btn-morado" onclick="showSection('profesionales')">
+                            <span class="btn-icon">👨‍⚕️</span>
+                            Soy profesional
+                        </button>
+                        <button class="btn-hero btn-verde" onclick="showSection('instituciones')">
+                            <span class="btn-icon">🏥</span>
+                            Institucional
+                        </button>
+                    </div>
+                </div> 
+
+            <!-- POR QUÉ ES IMPORTANTE -->
+            <div class="seccion-importancia">
+                <h2 class="section-title">¿Por qué es importante la consulta preconcepcional?</h2>
+                <div class="cards-grid">
+                    
+                    <div class="info-card">
+                        <div class="card-icon">
+                            <img src="Imagenes/Prevencion-1.png" alt="Prevención">
+                        </div>
+                        <h3>Prevención</h3>
+                        <p>Reduce hasta un <strong>70% el riesgo</strong> de malformaciones congénitas mediante suplementación adecuada.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-icon">
+                                <img src="Imagenes/Deteccion-1.png" alt="Prevención">
+                        </div>
+                        <h3>Detección temprana</h3>
+                        <p>Identifica y controla condiciones médicas <strong>antes del embarazo</strong> para evitar complicaciones.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-icon">
+                                <img src="Imagenes/Optimizar-1.png" alt="Prevención">
+                        </div>
+                        <h3>Optimización</h3>
+                        <p>Ajusta medicamentos, completa vacunas y prepara tu cuerpo en el <strong>momento ideal</strong>.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-icon">
+                                <img src="Imagenes/Tranquilidad-1.png" alt="Prevención">
+                        </div>
+                        <h3>Tranquilidad</h3>
+                        <p>Inicia tu embarazo con <strong>confianza y seguridad</strong>, sabiendo que hiciste todo lo posible.</p>
+                    </div>
+
+                    <div class="info-card card-rosa">
+                        <div class="card-icon">
+                                <img src="Imagenes/Educacion-1.png" alt="Prevención">
+                        </div>
+                        <h3>Educación continua</h3>
+                        <p>Aprende sobre <strong>nutrición, ejercicio y cuidados</strong> esenciales antes de concebir.</p>
+                    </div>
+
+                    <div class="info-card card-rosa">
+                        <div class="card-icon">
+                                <img src="Imagenes/Pareja-1.png" alt="Prevención">
+                        </div>
+                        <h3>Planificación en pareja</h3>
+                        <p>Involucra a tu pareja en la <strong>preparación conjunta</strong> para un embarazo saludable.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ESTADÍSTICAS VISUALES -->
+            <div class="seccion-stats">
+                <h2 class="section-title">El impacto de la preparación</h2>
+                <div class="stats-grid">
+                    
+                    <div class="stat-box">
+                        <div class="stat-number">70%</div>
+                        <div class="stat-label">Reducción de defectos del tubo neural con ácido fólico</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-number">3-12</div>
+                        <div class="stat-label">Meses ideales de preparación antes del embarazo</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Gratuita - Cubierta por tu plan de salud (POS)</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- LLAMADO A LA ACCIÓN -->
+            <div class="seccion-cta">
+                <div class="cta-box">
+                    <h2>¿Lista para comenzar?</h2>
+                    <p>Conoce todo lo que incluye la consulta preconcepcional y cómo solicitarla en tu EPS.</p>
+                    <button class="btn-cta" onclick="showSection('pacientes', true);">
+                        Explorar información para pacientes →
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <!-- FIN HOME -->
+        
+        <!-- SECCIÓN PACIENTES -->
+        <div id="pacientes" class="section">
+            
+            <!-- HERO -->
+            <div class="hero">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                    <div>
+                        <h2>Prepara tu embarazo de forma segura</h2>
+                        <p>La consulta preconcepcional es tu derecho. Es una cita médica ANTES de quedar embarazada que te ayuda a prevenir complicaciones y asegurar un embarazo saludable para ti y tu bebé.</p>
+                    </div>
+                    <div>
+                        <img src="Imagenes/Hero-mamas-1.png" alt="mama" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);">
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTÓN BUSCAR PROFESIONALES EN SISPRO -->
+            <div class="alert alert-info" style="text-align: center; margin-bottom: 2rem;">
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                    <strong>¿Buscas profesionales habilitados cerca de ti?</strong>
+                </p>
+                <button class="btn" onclick="window.open('https://www.sispro.gov.co/Pages/Home.aspx', '_blank')" style="font-size: 1.05rem; padding: 1rem 2rem;">
+                    🔍 Buscar en SISPRO (Registro de Prestadores)
+                </button>
+                <p style="font-size: 0.9rem; margin-top: 0.75rem; opacity: 0.9;">
+                    Consulta el Registro Especial de Prestadores de Servicios de Salud
+                </p>
+            </div>
+
+            <!-- QUÉ ES -->
+            <div class="card subsection" id="que-es">
+                <h3>¿Qué es la consulta preconcepcional?</h3>
+                
+                <!-- ESPACIO PARA IMAGEN - Descomenta para agregar imagen -->
+                <!-- <img src="Imagenes/consulta-medica.jpg" alt="Consulta médica" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;"> -->
+                
+                <p>Es una consulta médica que se realiza <strong>antes de quedar embarazada</strong>, idealmente entre 3 meses y 1 año antes de planificar un embarazo.</p>
+                
+                <div class="highlight">
+                    <h4>¿Por qué es diferente de la consulta prenatal?</h4>
+                    <p><strong>Prenatal</strong> = Cuando ya estás embarazada (control del embarazo)</p>
+                    <p><strong>Preconcepcional</strong> = Antes de quedar embarazada (preparación y prevención)</p>
+                </div>
+
+                <h4>¿Para qué sirve?</h4>
+                <ul>
+                    <li>✓ Prevenir complicaciones en el embarazo</li>
+                    <li>✓ Reducir el riesgo de malformaciones congénitas</li>
+                    <li>✓ Preparar tu cuerpo de la mejor forma</li>
+                    <li>✓ Identificar y controlar riesgos antes del embarazo</li>
+                    <li>✓ Asegurar que estés en tu mejor estado de salud</li>
+                </ul>
+            </div>
+
+            <!-- TIMELINE -->
+            <div class="card subsection" id="timeline">
+                <h3>Tu línea de tiempo hacia un embarazo saludable</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>12 meses antes 📅</h4>
+                        <p><strong>Primera consulta preconcepcional</strong></p>
+                        <ul>
+                            <li>Evaluación completa de tu salud</li>
+                            <li>Exámenes de laboratorio</li>
+                            <li>Actualización de vacunas</li>
+                            <li>Inicio de ácido fólico</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>9-12 meses antes 🛡️</h4>
+                        <p><strong>Período de preparación</strong></p>
+                        <ul>
+                            <li>Uso de método anticonceptivo temporal</li>
+                            <li>Cambios en estilo de vida (dejar tabaco, alcohol)</li>
+                            <li>Control de enfermedades crónicas</li>
+                            <li>Optimización de peso</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>3-6 meses antes 🔄</h4>
+                        <p><strong>Consulta de seguimiento</strong></p>
+                        <ul>
+                            <li>Verificación de controles</li>
+                            <li>Confirmación de vacunas completas</li>
+                            <li>Revisión de suplementación</li>
+                            <li>Planificación del momento óptimo</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Mes 0 🎉</h4>
+                        <p><strong>¡Embarazo planificado y saludable!</strong></p>
+                        <ul>
+                            <li>Suspensión de anticoncepción</li>
+                            <li>Inicio de búsqueda de embarazo</li>
+                            <li>Continuar con ácido fólico</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUÉ INCLUYE - ACCORDION -->
+            <div class="card subsection" id="componentes">
+                <h3>¿Qué se revisa en la consulta preconcepcional?</h3>
+                <p style="margin-bottom: 1.5rem;">Haz clic en cada componente para ver más detalles:</p>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>Historia clínica completa</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Se revisan:</strong></p>
+                            <ul>
+                                <li>Tus antecedentes médicos (enfermedades, cirugías, alergias)</li>
+                                <li>Antecedentes familiares (enfermedades hereditarias)</li>
+                                <li>Embarazos previos y complicaciones</li>
+                                <li>Medicamentos que tomas actualmente</li>
+                                <li>Hábitos de vida (tabaco, alcohol, ejercicio, alimentación)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>Exámenes de laboratorio</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Exámenes importantes:</strong></p>
+                            <ul>
+                                <li><strong>VIH, sífilis, hepatitis B:</strong> Infecciones que pueden transmitirse al bebé</li>
+                                <li><strong>Toxoplasmosis:</strong> Infección que puede causar malformaciones</li>
+                                <li><strong>Rubéola:</strong> Verificar inmunidad</li>
+                                <li><strong>Hemograma:</strong> Detectar anemia</li>
+                                <li><strong>Grupo sanguíneo y Rh:</strong> Identificar incompatibilidades</li>
+                                <li><strong>Glucemia:</strong> Descartar diabetes</li>
+                                <li><strong>Función tiroidea:</strong> Si hay síntomas o antecedentes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>Vacunación 💉</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Vacunas importantes antes del embarazo:</strong></p>
+                            <ul>
+                                <li><strong>Rubéola:</strong> Debe aplicarse al menos 1 mes antes del embarazo</li>
+                                <li><strong>Tétanos:</strong> Protección para ti y el bebé</li>
+                                <li><strong>Influenza:</strong> Puede aplicarse antes o durante el embarazo</li>
+                                <li><strong>Hepatitis B:</strong> Si no estás inmunizada</li>
+                                <li><strong>COVID-19:</strong> Recomendada antes del embarazo</li>
+                            </ul>
+                            <div class="alert alert-warning">
+                                <strong>⚠️ Importante:</strong> Algunas vacunas NO se pueden aplicar durante el embarazo, por eso es clave aplicarlas ANTES.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>Suplementación: Ácido Fólico 💊</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>¿Qué es?</strong> Una vitamina (vitamina B9) esencial para prevenir defectos del tubo neural (malformaciones en cerebro y columna del bebé).</p>
+                            
+                            <p><strong>Dosis:</strong></p>
+                            <ul>
+                                <li><strong>0.4-0.8 mg/día:</strong> Mujeres sin factores de riesgo</li>
+                                <li><strong>4-5 mg/día:</strong> Si tienes antecedentes de defectos del tubo neural, epilepsia, diabetes, obesidad</li>
+                            </ul>
+                            
+                            <p><strong>Cuándo empezar:</strong> Al menos 3 meses ANTES de quedar embarazada y continuar durante los primeros 3 meses del embarazo.</p>
+                            
+                            <div class="alert alert-success">
+                                <strong>✓ Dato importante:</strong> El ácido fólico reduce hasta un 70% el riesgo de defectos del tubo neural.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>Control de enfermedades crónicas</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>Si tienes alguna de estas condiciones, es FUNDAMENTAL controlarlas ANTES del embarazo:</p>
+                            
+                            <p><strong>Diabetes:</strong></p>
+                            <ul>
+                                <li>Control óptimo de glucosa (HbA1c menor a 6.5%)</li>
+                                <li>Previene malformaciones y complicaciones</li>
+                            </ul>
+
+                            <p><strong>Hipertensión (presión alta):</strong></p>
+                            <ul>
+                                <li>Ajuste de medicamentos (algunos no son seguros en embarazo)</li>
+                                <li>Control de presión arterial</li>
+                            </ul>
+
+                            <p><strong>Problemas de tiroides:</strong></p>
+                            <ul>
+                                <li>Control de TSH en rango óptimo</li>
+                                <li>Ajuste de dosis de medicamento</li>
+                            </ul>
+
+                            <p><strong>Epilepsia:</strong></p>
+                            <ul>
+                                <li>Cambio de anticonvulsivantes si es necesario (algunos causan malformaciones)</li>
+                                <li>Dosis altas de ácido fólico</li>
+                            </ul>
+
+                            <p><strong>Obesidad o bajo peso:</strong></p>
+                            <ul>
+                                <li>Alcanzar peso saludable antes del embarazo</li>
+                                <li>Plan de alimentación y ejercicio</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>Revisión de medicamentos ⚠️</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>Algunos medicamentos pueden causar malformaciones en el bebé (teratógenos).</p>
+                            
+                            <p><strong>Medicamentos que DEBEN suspenderse antes del embarazo:</strong></p>
+                            <ul>
+                                <li><strong>Isotretinoína (Roaccutane):</strong> Para acné - suspender al menos 1 mes antes</li>
+                                <li><strong>Warfarina:</strong> Anticoagulante - cambiar a alternativa segura</li>
+                                <li><strong>Estatinas:</strong> Para colesterol - suspender</li>
+                                <li><strong>IECA y ARA-II:</strong> Para presión - cambiar a medicamento seguro</li>
+                                <li><strong>Valproato:</strong> Anticonvulsivante - cambiar si es posible</li>
+                            </ul>
+
+                            <div class="alert alert-warning">
+                                <strong>⚠️ Nunca suspendas medicamentos por tu cuenta.</strong> El médico te ayudará a hacer cambios seguros.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>Hábitos de vida saludable 🌟</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>SUSPENDER:</strong></p>
+                            <ul>
+                                <li>❌ <strong>Tabaco:</strong> Aumenta riesgo de aborto, bajo peso, parto prematuro</li>
+                                <li>❌ <strong>Alcohol:</strong> Puede causar síndrome alcohólico fetal</li>
+                                <li>❌ <strong>Drogas ilícitas:</strong> Riesgo de malformaciones y complicaciones</li>
+                            </ul>
+
+                            <p><strong>ADOPTAR:</strong></p>
+                            <ul>
+                                <li>✓ <strong>Ejercicio regular:</strong> 30 minutos al día, 5 días a la semana</li>
+                                <li>✓ <strong>Alimentación saludable:</strong> Frutas, verduras, proteínas, granos enteros</li>
+                                <li>✓ <strong>Peso saludable:</strong> IMC entre 18.5-24.9</li>
+                                <li>✓ <strong>Manejo de estrés:</strong> Técnicas de relajación</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>Anticoncepción durante el período de preparación 🛡️</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="alert alert-info">
+                                <strong>¿Por qué necesito anticoncepción si quiero quedar embarazada?</strong><br>
+                                Porque la preparación puede tomar entre 3 meses y 1 año. Durante ese tiempo necesitas:
+                                <ul>
+                                    <li>Completar vacunas</li>
+                                    <li>Optimizar control de enfermedades crónicas</li>
+                                    <li>Alcanzar peso saludable</li>
+                                    <li>Cambiar medicamentos teratógenos</li>
+                                    <li>Tomar ácido fólico por 3 meses mínimo</li>
+                                </ul>
+                            </div>
+                            
+                            <p><strong>Métodos anticonceptivos recomendados durante este período:</strong></p>
+                            <ul>
+                                <li>Píldoras anticonceptivas</li>
+                                <li>DIU (de cobre o hormonal)</li>
+                                <li>Implante subdérmico</li>
+                                <li>Inyección trimestral</li>
+                                <li>Preservativo</li>
+                            </ul>
+
+                            <p><strong>Todos son reversibles:</strong> Cuando estés lista, suspendes el método y puedes buscar el embarazo.</p>
+
+                            <a href="#" class="btn btn-secondary" onclick="showAnticonceptivosSection(); return false;">Ver comparador de métodos anticonceptivos →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TU DERECHO -->
+            <div class="card subsection" id="tu-derecho">
+                <h3>ES TU DERECHO 📋</h3>
+                
+                <div class="highlight">
+                    <h4>Resolución 3280 de 2018 - Ministerio de Salud y Protección Social</h4>
+                    <p>La consulta preconcepcional está establecida en la <strong>Ruta Integral de Atención en Salud Materno Perinatal</strong> como parte de tus derechos en salud sexual y reproductiva.</p>
+                </div>
+
+                <h4>¿Cómo solicitar la consulta en tu EPS?</h4>
+                <ol>
+                    <li><strong>Solicita cita médica</strong> con medicina general o ginecología</li>
+                    <li><strong>Menciona específicamente:</strong> "Quiero una consulta preconcepcional porque estoy planificando un embarazo"</li>
+                    <li><strong>Si te la niegan:</strong> Recuérdales que es tu derecho según la Resolución 3280 de 2018</li>
+                    <li><strong>Si persiste la negativa:</strong> Puedes presentar un derecho de petición</li>
+                </ol>
+
+                <div class="alert alert-success">
+                    <strong>✓ Es GRATIS:</strong> Está cubierta por tu plan de salud (POS). No tiene costo adicional.
+                </div>
+
+                <h4>Preguntas frecuentes:</h4>
+                
+                <p><strong>¿Cuándo debo solicitarla?</strong></p>
+                <p>Idealmente 1 año antes de planificar el embarazo, mínimo 3 meses antes.</p>
+
+                <p><strong>¿Con qué especialista?</strong></p>
+                <p>Medicina general o ginecología. Ambos pueden realizar la consulta preconcepcional.</p>
+
+                <p><strong>¿Necesito autorización especial?</strong></p>
+                <p>No. Es parte de la atención básica en salud.</p>
+
+                <p><strong>¿Qué hago si mi EPS no tiene citas disponibles pronto?</strong></p>
+                <p>Insiste y documenta la solicitud. Si es urgente, puedes presentar un derecho de petición solicitando atención oportuna.</p>
+            </div>
+
+            <!-- ANTICONCEPTIVOS SECTION (HIDDEN BY DEFAULT) -->
+            <div id="anticonceptivos-section">
+                <div class="card">
+                    <h3>Anticoncepción durante el período de preparación</h3>
+                    
+                    <div class="alert alert-info">
+                        <strong>¿Por qué es importante?</strong><br>
+                        Durante los 3-12 meses de preparación para el embarazo, necesitas un método anticonceptivo efectivo y reversible que te permita planificar el momento óptimo de concepción.
+                    </div>
+
+                    <h4>Comparador de métodos anticonceptivos</h4>
+                    <p>Todos estos métodos son seguros, efectivos y reversibles:</p>
+
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" onclick="filterMethods('todos')">Todos</button>
+                        <button class="filter-btn" onclick="filterMethods('hormonal')">Hormonales</button>
+                        <button class="filter-btn" onclick="filterMethods('no-hormonal')">No hormonales</button>
+                        <button class="filter-btn" onclick="filterMethods('larga-duracion')">Larga duración</button>
+                    </div>
+
+                    <!-- DIU COBRE -->
+                    <div class="method-card" data-type="no-hormonal larga-duracion">
+                        <div class="method-header">
+                            <h4>DIU de Cobre</h4>
+                            <span class="effectiveness">99% efectivo</span>
+                        </div>
+                        <p>Dispositivo intrauterino sin hormonas.</p>
+                        <div class="method-details">
+                            <div class="method-detail">
+                                <strong>Duración:</strong>
+                                <p>5-10 años</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Reversibilidad:</strong>
+                                <p>Inmediata al retirar</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Ventajas:</strong>
+                                <p>Sin hormonas, muy efectivo, larga duración</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Desventajas:</strong>
+                                <p>Puede aumentar sangrado menstrual</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DIU HORMONAL -->
+                    <div class="method-card" data-type="hormonal larga-duracion">
+                        <div class="method-header">
+                            <h4>DIU Hormonal (Mirena, Kyleena)</h4>
+                            <span class="effectiveness">99% efectivo</span>
+                        </div>
+                        <p>Dispositivo intrauterino que libera progestina.</p>
+                        <div class="method-details">
+                            <div class="method-detail">
+                                <strong>Duración:</strong>
+                                <p>3-5 años según tipo</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Reversibilidad:</strong>
+                                <p>Inmediata al retirar</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Ventajas:</strong>
+                                <p>Reduce sangrado, muy efectivo</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Desventajas:</strong>
+                                <p>Puede haber manchado irregular</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IMPLANTE -->
+                    <div class="method-card" data-type="hormonal larga-duracion">
+                        <div class="method-header">
+                            <h4>Implante Subdérmico (Implanon, Nexplanon)</h4>
+                            <span class="effectiveness">99% efectivo</span>
+                        </div>
+                        <p>Varilla pequeña que se coloca bajo la piel del brazo.</p>
+                        <div class="method-details">
+                            <div class="method-detail">
+                                <strong>Duración:</strong>
+                                <p>3 años</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Reversibilidad:</strong>
+                                <p>Inmediata al retirar</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Ventajas:</strong>
+                                <p>Muy efectivo, no requiere recordar tomar nada</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Desventajas:</strong>
+                                <p>Puede causar sangrado irregular</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PÍLDORAS -->
+                    <div class="method-card" data-type="hormonal">
+                        <div class="method-header">
+                            <h4>Píldoras Anticonceptivas</h4>
+                            <span class="effectiveness">91-99% efectivo</span>
+                        </div>
+                        <p>Tabletas diarias con hormonas (estrógeno + progestina o solo progestina).</p>
+                        <div class="method-details">
+                            <div class="method-detail">
+                                <strong>Duración:</strong>
+                                <p>Mientras se tomen</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Reversibilidad:</strong>
+                                <p>Inmediata al suspender</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Ventajas:</strong>
+                                <p>Control del ciclo, reduce cólicos</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Desventajas:</strong>
+                                <p>Requiere toma diaria, olvidos reducen efectividad</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- INYECCIÓN -->
+                    <div class="method-card" data-type="hormonal">
+                        <div class="method-header">
+                            <h4>Inyección Trimestral (Depo-Provera)</h4>
+                            <span class="effectiveness">94-99% efectivo</span>
+                        </div>
+                        <p>Inyección intramuscular cada 3 meses.</p>
+                        <div class="method-details">
+                            <div class="method-detail">
+                                <strong>Duración:</strong>
+                                <p>3 meses por inyección</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Reversibilidad:</strong>
+                                <p>Puede tardar 6-12 meses en volver a ovular</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Ventajas:</strong>
+                                <p>Solo 4 inyecciones al año</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Desventajas:</strong>
+                                <p>Puede causar aumento de peso, demora en retorno de fertilidad</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRESERVATIVO -->
+                    <div class="method-card" data-type="no-hormonal">
+                        <div class="method-header">
+                            <h4>Preservativo (Condón)</h4>
+                            <span class="effectiveness">85-98% efectivo</span>
+                        </div>
+                        <p>Método de barrera. Protege también contra infecciones de transmisión sexual.</p>
+                        <div class="method-details">
+                            <div class="method-detail">
+                                <strong>Duración:</strong>
+                                <p>Cada relación sexual</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Reversibilidad:</strong>
+                                <p>Inmediata</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Ventajas:</strong>
+                                <p>Protege contra ITS, sin hormonas, fácil acceso</p>
+                            </div>
+                            <div class="method-detail">
+                                <strong>Desventajas:</strong>
+                                <p>Requiere uso correcto en cada relación</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success">
+                        <strong>✓ Todos estos métodos son reversibles:</strong> Cuando estés lista para buscar el embarazo, simplemente suspendes el método (o retiras DIU/implante) y puedes empezar a buscar la concepción.
+                    </div>
+
+                    <div class="highlight">
+                        <h4>¿Cuál elegir?</h4>
+                        <p>Habla con tu médico en la consulta preconcepcional. El mejor método es el que se adapta a:</p>
+                        <ul>
+                            <li>Tu estado de salud</li>
+                            <li>Tus preferencias personales</li>
+                            <li>Cuánto tiempo necesitas de preparación</li>
+                            <li>Si prefieres método de larga duración vs diario</li>
+                        </ul>
+                    </div>
+
+                    <button class="btn" onclick="hideAnticonceptivosSection()">← Volver a componentes de la consulta</button>
+                </div>
+            </div>
+
+            <!-- RECURSOS DESCARGABLES -->
+            <div class="card subsection" id="recursos">
+                <h3>Recursos descargables</h3>
+                <div class="download-grid">
+                    <div class="download-card">
+                        <div class="download-icon">📄</div>
+                        <h4>Folleto Informativo</h4>
+                        <p>Información sobre consulta preconcepcional</p>
+                        <a href="Descargas/Tu-Derecho-a-una-Consulta-Preconcepcional-Mujer.pdf" download>
+                            <button class="btn">Descargar PDF</button>
+                        </a>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="download-icon">📊</div>
+                        <h4>Infografía</h4>
+                        <p>Línea de tiempo visual de preparación</p>
+                        <a href="Descargas/infografia-consulta-preconcep.pdf" download>
+                            <button class="btn">Descargar PDF</button>
+                        </a>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="download-icon">✅</div>
+                        <h4>Checklist Personal</h4>
+                        <p>Lista de verificación para tu preparación</p>
+                        <a href="Descargas/Checklist-mujeres.pdf" download>
+                            <button class="btn">Descargar PDF</button>
+                        </a>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="download-icon">📝</div>
+                        <h4>Modelo Derecho de Petición</h4>
+                        <p>Si tu EPS niega la consulta</p>
+                        <a href="Descargas/Modelo_Derecho_Peticion.docx" download>
+                            <button class="btn">Descargar Word</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+<!-- SECCIÓN PAPÁS -->
+        <div id="papas" class="section">
+            
+            <!-- HERO -->
+            <div class="hero hero-azul">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                    <div>
+                        <h2>¿Quieres ser papá?</h2>
+                        <p>La consulta preconcepcional NO es solo para mujeres. La salud y los hábitos del futuro padre también influyen directamente en la fertilidad, el embarazo y la salud del bebé.</p>
+                    </div>
+                    <div>
+                        <img src="Imagenes/Hero-papas-1.png" alt="papa" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);">
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÚSQUEDA DE PROFESIONALES -->
+            <div class="alert alert-info" style="text-align: center; margin-bottom: 2rem;">
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                    <strong>¿Buscas profesionales para tu consulta preconcepcional?</strong>
+                </p>
+                <button class="btn" onclick="window.open('https://www.sispro.gov.co/Pages/Home.aspx', '_blank')" style="font-size: 1.05rem; padding: 1rem 2rem; background: #4A9ECC;">
+                    🔍 Buscar en SISPRO (Registro de Prestadores)
+                </button>
+            </div>
+
+            <!-- IMPORTANCIA PARA EL HOMBRE -->
+            <div class="card subsection" id="importancia-papa">
+                <h3>¿Por qué es importante para el hombre?</h3>
+                
+                <p>Existe un mito de que la preparación preconcepcional es "cosa de mujeres". <strong>Esto es FALSO.</strong> La salud del padre antes de la concepción tiene un impacto directo en:</p>
+                
+                <div class="highlight">
+                    <h4>🧬 Calidad del material genético</h4>
+                    <p>Los espermatozoides tardan aproximadamente <strong>74 días (casi 3 meses)</strong> en madurar completamente. Durante este tiempo, la exposición a toxinas, mala alimentación, estrés o enfermedades puede afectar:</p>
+                    <ul>
+                        <li>La calidad del ADN espermático</li>
+                        <li>La movilidad y forma de los espermatozoides</li>
+                        <li>Las probabilidades de concepción</li>
+                        <li>El riesgo de abortos espontáneos</li>
+                    </ul>
+                </div>
+
+                <h4>Factores que afectan la fertilidad masculina:</h4>
+                <ul>
+                    <li>🚬 <strong>Tabaco:</strong> Reduce el conteo y movilidad espermática hasta en 23%</li>
+                    <li>🍺 <strong>Alcohol:</strong> Disminuye los niveles de testosterona y afecta la morfología del esperma</li>
+                    <li>⚖️ <strong>Obesidad:</strong> Relacionada con baja calidad espermática y desequilibrios hormonales</li>
+                    <li>🌡️ <strong>Calor excesivo:</strong> Saunas frecuentes, laptops en el regazo, ropa muy ajustada</li>
+                    <li>💊 <strong>Algunos medicamentos:</strong> Esteroides, antidepresivos, medicamentos para úlceras</li>
+                    <li>☢️ <strong>Exposición laboral:</strong> Pesticidas, metales pesados, radiación, químicos industriales</li>
+                    <li>😰 <strong>Estrés crónico:</strong> Afecta la producción de esperma</li>
+                </ul>
+
+                <div class="alert alert-warning">
+                    <strong>⚠️ Dato importante:</strong> La edad paterna también importa. Después de los 40 años, aumenta el riesgo de mutaciones genéticas en el esperma, lo que puede incrementar el riesgo de ciertos trastornos en el bebé.
+                </div>
+            </div>
+
+            <!-- QUÉ INCLUYE LA CONSULTA PARA EL HOMBRE -->
+            <div class="card subsection" id="consulta-papa">
+                <h3>¿Qué incluye la consulta preconcepcional para el hombre?</h3>
+                
+                <h4>📋 Historia clínica completa</h4>
+                <ul>
+                    <li>Antecedentes médicos personales y familiares</li>
+                    <li>Medicamentos actuales</li>
+                    <li>Exposición laboral a tóxicos</li>
+                    <li>Hábitos de vida (ejercicio, dieta, tabaco, alcohol, drogas)</li>
+                    <li>Historial de fertilidad (embarazos previos, dificultades)</li>
+                    <li>Enfermedades crónicas (diabetes, hipertensión, etc.)</li>
+                </ul>
+
+                <h4>🔬 Exámenes de laboratorio</h4>
+                <ul>
+                    <li><strong>Hemograma completo:</strong> Detectar anemia o infecciones</li>
+                    <li><strong>Pruebas de enfermedades de transmisión sexual (ETS):</strong>
+                        <ul>
+                            <li>VIH</li>
+                            <li>Sífilis</li>
+                            <li>Hepatitis B y C</li>
+                            <li>Clamidia y gonorrea (si hay síntomas)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Grupo sanguíneo y factor Rh:</strong> Importante para compatibilidad con la pareja</li>
+                    <li><strong>Glicemia:</strong> Descartar diabetes</li>
+                    <li><strong>Perfil hormonal (si hay sospecha de infertilidad):</strong>
+                        <ul>
+                            <li>Testosterona</li>
+                            <li>FSH y LH</li>
+                            <li>Prolactina</li>
+                        </ul>
+                    </li>
+                    <li><strong>Espermograma (si hay dificultad para concebir):</strong> Evalúa:
+                        <ul>
+                            <li>Conteo de espermatozoides</li>
+                            <li>Movilidad</li>
+                            <li>Morfología</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h4>💉 Vacunación</h4>
+                <p>Los hombres también deben tener esquema de vacunación completo:</p>
+                <ul>
+                    <li>Tdap (tétanos, difteria, tos ferina) - Protege al bebé después de nacer</li>
+                    <li>Hepatitis B (si no está vacunado)</li>
+                    <li>Influenza (vacuna anual)</li>
+                    <li>Varicela (si no la ha tenido ni está vacunado)</li>
+                    <li>Triple viral (si no está vacunado)</li>
+                </ul>
+
+                <div class="highlight">
+                    <h4>💡 ¿Sabías que...?</h4>
+                    <p>Si el hombre se vacuna contra la tos ferina (incluida en Tdap) antes del nacimiento del bebé, reduce el riesgo de contagio en los primeros meses de vida, cuando el bebé aún no puede vacunarse.</p>
+                </div>
+            </div>
+
+            <!-- CAMBIOS DE HÁBITOS -->
+            <div class="card subsection" id="habitos-papa">
+                <h3>Cambios de hábitos recomendados</h3>
+                
+                <h4>🚭 Dejar de fumar (3-6 meses antes)</h4>
+                <p><strong>¿Por qué?</strong> El tabaco daña el ADN del esperma, reduce el conteo y aumenta el riesgo de abortos espontáneos.</p>
+                <p><strong>Beneficio:</strong> Después de 3 meses sin fumar, la calidad del esperma mejora significativamente.</p>
+
+                <h4>🍺 Reducir o eliminar el alcohol</h4>
+                <p><strong>¿Por qué?</strong> El consumo excesivo reduce la testosterona y afecta la producción de esperma.</p>
+                <p><strong>Recomendación:</strong> Máximo 2 bebidas estándar por semana, idealmente cero si hay problemas de fertilidad.</p>
+
+                <h4>🏃 Ejercicio regular</h4>
+                <p><strong>¿Por qué?</strong> Mejora la circulación, regula hormonas y reduce el estrés.</p>
+                <p><strong>Recomendación:</strong> 150 minutos de ejercicio moderado por semana (caminar rápido, nadar, bicicleta).</p>
+                <p><strong>⚠️ Evitar:</strong> Ejercicio extremo (ciclismo intenso prolongado, esteroides anabólicos).</p>
+
+                <h4>🥗 Alimentación balanceada</h4>
+                <p>Una dieta rica en antioxidantes protege la calidad del esperma:</p>
+                <ul>
+                    <li><strong>Frutas y verduras:</strong> Tomate (licopeno), brócoli, espinacas</li>
+                    <li><strong>Frutos secos:</strong> Nueces, almendras (vitamina E)</li>
+                    <li><strong>Pescado:</strong> Salmón, sardinas (omega-3)</li>
+                    <li><strong>Carne magra:</strong> Pollo, pavo (zinc)</li>
+                    <li><strong>Legumbres:</strong> Lentejas, garbanzos (ácido fólico)</li>
+                </ul>
+
+                <h4>💊 Suplementación recomendada</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Suplemento</th>
+                            <th>Dosis diaria</th>
+                            <th>Beneficio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ácido fólico</td>
+                            <td>400-800 mcg</td>
+                            <td>Reduce defectos del tubo neural, mejora calidad del esperma</td>
+                        </tr>
+                        <tr>
+                            <td>Zinc</td>
+                            <td>15 mg</td>
+                            <td>Esencial para la producción de testosterona y esperma</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamina C</td>
+                            <td>90 mg</td>
+                            <td>Antioxidante que protege el esperma</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamina E</td>
+                            <td>15 mg</td>
+                            <td>Mejora la movilidad espermática</td>
+                        </tr>
+                        <tr>
+                            <td>Selenio</td>
+                            <td>55 mcg</td>
+                            <td>Protege el ADN del esperma</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="alert alert-warning">
+                    <strong>⚠️ Importante:</strong> Consulta con tu médico antes de tomar suplementos. Algunas vitaminas en exceso pueden ser perjudiciales.
+                </div>
+
+                <h4>😴 Dormir bien</h4>
+                <p><strong>¿Por qué?</strong> La falta de sueño reduce la testosterona y afecta la calidad del esperma.</p>
+                <p><strong>Recomendación:</strong> 7-9 horas diarias.</p>
+
+                <h4>🌡️ Evitar calor excesivo en genitales</h4>
+                <ul>
+                    <li>No usar laptops directamente en el regazo</li>
+                    <li>Evitar saunas y baños muy calientes frecuentes</li>
+                    <li>No usar ropa interior muy ajustada</li>
+                    <li>Si trabajas sentado mucho tiempo, toma descansos frecuentes</li>
+                </ul>
+            </div>
+
+            <!-- APOYO A LA PAREJA -->
+            <div class="card subsection" id="apoyo-pareja">
+                <h3>Tu rol como pareja durante el proceso</h3>
+                
+                <h4>👥 Apoyo emocional</h4>
+                <p>El proceso de planificación y embarazo puede ser estresante para la mujer. Tu apoyo es fundamental:</p>
+                <ul class="checklist">
+                    <li>Asiste a TODAS las citas médicas con ella</li>
+                    <li>Escucha sus preocupaciones sin minimizarlas</li>
+                    <li>Infórmate sobre el embarazo y el parto</li>
+                    <li>Comparte las tareas del hogar equitativamente</li>
+                    <li>Prepárate emocionalmente para la paternidad</li>
+                </ul>
+
+                <h4>🤝 Cambios de hábitos en equipo</h4>
+                <p>Es más fácil hacer cambios cuando ambos participan:</p>
+                <ul>
+                    <li>Si ella debe dejar de fumar/beber, hazlo tú también</li>
+                    <li>Cocinen comidas saludables juntos</li>
+                    <li>Hagan ejercicio juntos</li>
+                    <li>Tomen las vitaminas al mismo tiempo (para no olvidar)</li>
+                </ul>
+
+                <h4>📚 Edúcate sobre la paternidad</h4>
+                <ul>
+                    <li>Lee sobre desarrollo fetal y cuidados del recién nacido</li>
+                    <li>Asiste a cursos de preparación para el parto</li>
+                    <li>Habla con otros padres sobre sus experiencias</li>
+                    <li>Planifica financieramente para la llegada del bebé</li>
+                </ul>
+
+                <div class="highlight">
+                    <h4>💪 Mensaje final</h4>
+                    <p><strong>Ser padre comienza ANTES de la concepción.</strong> Tu participación activa en la consulta preconcepcional demuestra compromiso con la salud de tu pareja y tu futuro hijo. No es "ayudar", es co-responsabilidad.</p>
+                </div>
+            </div>
+
+            <!-- MITOS Y REALIDADES -->
+            <div class="card subsection" id="mitos-papa">
+                <h3>Mitos y realidades sobre fertilidad masculina</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mito ❌</th>
+                            <th>Realidad ✅</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"Los hombres no necesitan preparación preconcepcional"</td>
+                            <td>La salud del padre afecta directamente la fertilidad y el desarrollo del bebé</td>
+                        </tr>
+                        <tr>
+                            <td>"La fertilidad masculina no disminuye con la edad"</td>
+                            <td>Después de los 40 años aumentan las mutaciones genéticas en el esperma</td>
+                        </tr>
+                        <tr>
+                            <td>"Si ya tengo hijos, no necesito consulta"</td>
+                            <td>La salud cambia con el tiempo. Una nueva evaluación es importante</td>
+                        </tr>
+                        <tr>
+                            <td>"Solo importa durante la concepción"</td>
+                            <td>Los cambios deben hacerse 3 meses antes (maduración del esperma)</td>
+                        </tr>
+                        <tr>
+                            <td>"La ropa interior ajustada no afecta"</td>
+                            <td>El calor excesivo reduce la producción y calidad del esperma</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- RECURSOS DESCARGABLES PARA PAPÁS -->
+            <div id="recursos-papas" class="card">
+                <h3>Recursos descargables para futuros papás</h3>
+                
+                <div class="download-grid">
+                    <div class="download-card">
+                        <div class="download-icon">📋</div>
+                        <h4>Folleto informativo</h4>
+                        <p>Información sobre consulta preconcepcional</p>
+                        <a href="Descargas/Tu-Derecho-a-una-Consulta-Preconcepcional-Hombre.pdf" download>
+                            <button class="btn">Descargar PDF</button>
+                        </a>
+                    
+                    </div>
+
+                    <div class="download-card">
+                        <div class="download-icon">💪</div>
+                        <h4>Checklist para papás</h4>
+                        <p>Lista de verificación para tu preparación</p>
+                        <a href="Descargas/Checklist-Hombres.pdf" download>
+                            <button class="btn">Descargar PDF</button>
+                        </a>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="download-icon">👨‍👩‍👧</div>
+                        <h4>Modelo de derecho de petición</h4>
+                        <p>Si tu EPS niega la consulta</p>
+                         <a href="Descargas/Modelo_Derecho_Peticion.docx" download>
+                            <button class="btn">Descargar Word</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN PROFESIONALES -->
+        <div id="profesionales" class="section">
+            
+            <div class="hero">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                    <div>
+                        <h2>Herramientas para Profesionales de Salud</h2>
+                        <p>Guías, formatos y recursos basados en la Resolución 3280 de 2018 para estandarizar la consulta preconcepcional</p>
+                    </div>
+                    <div>
+                        <img src="Imagenes/Hero-Profesionales-1.png" alt="Profesionales de salud" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(147, 112, 219, 0.3);">
+                    </div>
+                </div>
+            </div>
+
+            <!-- GUÍA RÁPIDA -->
+            <div class="card subsection" id="guia-rapida">
+                <h3>Guía Rápida de Consulta Preconcepcional</h3>
+                
+                <div class="alert alert-info">
+                    <strong>Fundamento legal:</strong> Resolución 3280 de 2018 - Ruta Integral de Atención en Salud Materno Perinatal
+                </div>
+
+                <h4>Estructura de la consulta</h4>
+                <ul class="checklist">
+                    <li>Anamnesis completa (antecedentes personales, familiares, obstétricos)</li>
+                    <li>Examen físico (signos vitales, IMC, examen ginecológico si aplica)</li>
+                    <li>Solicitud de laboratorios según perfil de riesgo</li>
+                    <li>Revisión y actualización de esquema de vacunación</li>
+                    <li>Prescripción de suplementación (ácido fólico, hierro si aplica)</li>
+                    <li>Revisión de medicamentos y suspensión de teratógenos</li>
+                    <li>Control/optimización de enfermedades crónicas</li>
+                    <li>Asesoría sobre anticoncepción durante período de preparación</li>
+                    <li>Educación sobre hábitos saludables</li>
+                    <li>Plan de seguimiento (cita de control 3-6 meses)</li>
+                </ul>
+
+                <h4>Duración estimada</h4>
+                <p>30-45 minutos para primera consulta</p>
+            </div>
+
+            <!-- LABORATORIOS -->
+            <div class="card subsection" id="laboratorios">
+                <h3>Laboratorios y tamizajes</h3>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Examen</th>
+                                <th>Justificación</th>
+                                <th>Indicación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>VIH</strong></td>
+                                <td>Prevención transmisión vertical</td>
+                                <td>Todas las pacientes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sífilis (VDRL/RPR)</strong></td>
+                                <td>Prevención sífilis congénita</td>
+                                <td>Todas las pacientes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hepatitis B (HBsAg)</strong></td>
+                                <td>Prevención transmisión vertical</td>
+                                <td>Todas las pacientes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Toxoplasmosis IgG/IgM</strong></td>
+                                <td>Identificar susceptibilidad</td>
+                                <td>Todas las pacientes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rubéola IgG</strong></td>
+                                <td>Verificar inmunidad</td>
+                                <td>Todas las pacientes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hemograma</strong></td>
+                                <td>Descartar anemia</td>
+                                <td>Todas las pacientes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Grupo y Rh</strong></td>
+                                <td>Identificar incompatibilidades</td>
+                                <td>Todas las pacientes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Glucemia basal</strong></td>
+                                <td>Tamizaje diabetes</td>
+                                <td>Todas las pacientes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>TSH</strong></td>
+                                <td>Tamizaje hipotiroidismo</td>
+                                <td>Si síntomas o alto riesgo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Citología cervicouterina</strong></td>
+                                <td>Tamizaje cáncer cervical</td>
+                                <td>Según esquema vigente</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- VACUNACIÓN -->
+            <div class="card subsection" id="vacunacion">
+                <h3>Esquema de vacunación pre-embarazo</h3>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Vacuna</th>
+                                <th>Indicación</th>
+                                <th>Momento de aplicación</th>
+                                <th>Notas importantes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Rubéola (MMR/SRP)</strong></td>
+                                <td>Si no tiene inmunidad (IgG negativo)</td>
+                                <td>Al menos 1 mes ANTES del embarazo</td>
+                                <td>Contraindicada durante embarazo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tétanos (Td o Tdap)</strong></td>
+                                <td>Si esquema incompleto</td>
+                                <td>Antes o durante embarazo</td>
+                                <td>Protección para madre y neonato</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Influenza</strong></td>
+                                <td>Todas las mujeres</td>
+                                <td>Antes o durante embarazo (anual)</td>
+                                <td>Segura en embarazo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hepatitis B</strong></td>
+                                <td>Si no inmunizada (HBsAg negativo)</td>
+                                <td>Iniciar esquema antes</td>
+                                <td>Esquema 0-1-6 meses</td>
+                            </tr>
+                            <tr>
+                                <td><strong>COVID-19</strong></td>
+                                <td>Todas las mujeres</td>
+                                <td>Antes o durante embarazo</td>
+                                <td>Segura y recomendada</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="alert alert-warning">
+                    <strong>⚠️ Vacunas CONTRAINDICADAS en embarazo:</strong> Rubéola (MMR/SRP), Varicela, BCG, Fiebre Amarilla. Aplicar ANTES del embarazo si están indicadas.
+                </div>
+            </div>
+
+            <!-- SUPLEMENTACIÓN -->
+            <div class="card subsection" id="suplementacion">
+                <h3>Suplementación</h3>
+                
+                <h4>Ácido Fólico</h4>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Perfil de riesgo</th>
+                                <th>Dosis diaria</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Riesgo bajo</strong> (sin factores de riesgo)</td>
+                                <td>0.4 - 0.8 mg/día</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Riesgo alto:</strong> Antecedente de defecto tubo neural, epilepsia en tratamiento con valproato o carbamazepina, diabetes mellitus, obesidad</td>
+                                <td>4 - 5 mg/día</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><strong>Inicio:</strong> Al menos 3 meses ANTES de la concepción. <strong>Duración:</strong> Hasta las 12 semanas de gestación.</p>
+
+                <h4>Hierro</h4>
+                <p><strong>Indicación:</strong> Si hay anemia (Hb <12 g/dL)</p>
+                <p><strong>Dosis:</strong> 60-120 mg de hierro elemental al día</p>
+            </div>
+
+            <!-- TERATÓGENOS -->
+            <div class="card subsection" id="teratogenos">
+                <h3>Medicamentos teratógenos - Suspensión o cambio necesario</h3>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Medicamento</th>
+                                <th>Indicación</th>
+                                <th>Acción</th>
+                                <th>Alternativa segura</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Isotretinoína (Roaccutane)</strong></td>
+                                <td>Acné</td>
+                                <td>Suspender al menos 1 mes antes</td>
+                                <td>Antibióticos tópicos, tratamientos locales</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Warfarina</strong></td>
+                                <td>Anticoagulación</td>
+                                <td>Cambiar antes del embarazo</td>
+                                <td>Heparina de bajo peso molecular</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IECA / ARA-II</strong></td>
+                                <td>Hipertensión</td>
+                                <td>Cambiar antes del embarazo</td>
+                                <td>Metildopa, labetalol, nifedipino</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Estatinas</strong></td>
+                                <td>Dislipidemia</td>
+                                <td>Suspender</td>
+                                <td>Dieta, ejercicio (no tratamiento farmacológico necesario durante embarazo)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Valproato</strong></td>
+                                <td>Epilepsia</td>
+                                <td>Cambiar si es posible</td>
+                                <td>Lamotrigina, levetiracetam (según caso)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Metotrexato</strong></td>
+                                <td>Artritis reumatoide</td>
+                                <td>Suspender al menos 3 meses antes</td>
+                                <td>Consultar con reumatología</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="alert alert-warning">
+                    <strong>⚠️ Importante:</strong> Nunca suspender medicamentos sin evaluación médica. Coordinar con especialista tratante para cambios seguros.
+                </div>
+            </div>
+
+            <!-- FORMATO DE HISTORIA CLÍNICA -->
+            <div class="card subsection" id="formato-hc">
+                <h3>Formato de Historia Clínica Preconcepcional</h3>
+                
+                <div class="alert alert-success">
+                    <strong>✓ Protección legal:</strong> Este formato incluye TODOS los ítems establecidos en la Resolución 3280/2018, proporcionando documentación completa para auditorías.
+                </div>
+
+                <button class="btn copy-btn" onclick="copyFormatoHC()">📋 Copiar todo el formato para pegar en sistema de HC</button>
+
+                <div class="hc-formato" id="formato-hc-content">
+                    <h4>CONSULTA PRECONCEPCIONAL</h4>
+                    
+                    <div class="hc-section">
+                        <label>Fecha de consulta:</label>
+                        <input type="date" value="">
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Edad de la paciente:</label>
+                        <input type="number" placeholder="años">
+                    </div>
+
+                    <h4>1. ANTECEDENTES PERSONALES</h4>
+                    
+                    <div class="hc-section">
+                        <label>Enfermedades crónicas:</label>
+                        <textarea placeholder="Diabetes, hipertensión, hipotiroidismo, epilepsia, asma, etc."></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Cirugías previas:</label>
+                        <textarea placeholder="Detallar tipo de cirugía y fecha"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Alergias (medicamentos, alimentos, otros):</label>
+                        <textarea placeholder=""></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Medicamentos actuales:</label>
+                        <textarea placeholder="Nombre, dosis, frecuencia"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Transfusiones previas:</label>
+                        <textarea placeholder="Sí/No. Si sí, especificar cuándo y motivo"></textarea>
+                    </div>
+
+                    <h4>2. ANTECEDENTES FAMILIARES</h4>
+                    
+                    <div class="hc-section">
+                        <label>Diabetes mellitus:</label>
+                        <textarea placeholder="Familiar(es) afectado(s)"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Hipertensión arterial:</label>
+                        <textarea placeholder="Familiar(es) afectado(s)"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Enfermedades genéticas/hereditarias:</label>
+                        <textarea placeholder="Síndrome de Down, hemofilia, fibrosis quística, etc."></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Gemelaridad:</label>
+                        <textarea placeholder="Antecedente familiar de embarazos múltiples"></textarea>
+                    </div>
+
+                    <h4>3. ANTECEDENTES GINECOOBSTÉTRICOS</h4>
+                    
+                    <div class="hc-section">
+                        <label>Menarquia (edad de primera menstruación):</label>
+                        <input type="number" placeholder="años">
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Ciclos menstruales:</label>
+                        <textarea placeholder="Regulares/irregulares, duración, cantidad"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>FUM (Fecha de última menstruación):</label>
+                        <input type="date" value="">
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Método anticonceptivo actual:</label>
+                        <textarea placeholder="Tipo, desde cuándo"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Embarazos previos (G___ P___ A___ C___):</label>
+                        <textarea placeholder="Gestas, partos, abortos, cesáreas"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Complicaciones en embarazos previos:</label>
+                        <textarea placeholder="Preeclampsia, diabetes gestacional, parto prematuro, hemorragia postparto, etc."></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Hijos previos con malformaciones o problemas al nacer:</label>
+                        <textarea placeholder="Especificar tipo"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Infecciones de transmisión sexual previas:</label>
+                        <textarea placeholder="Clamidia, gonorrea, sífilis, VPH, VIH, herpes, etc."></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Citología cervicouterina:</label>
+                        <textarea placeholder="Fecha de última citología y resultado"></textarea>
+                    </div>
+
+                    <h4>4. HÁBITOS Y ESTILOS DE VIDA</h4>
+                    
+                    <div class="hc-section">
+                        <label>Tabaquismo:</label>
+                        <textarea placeholder="Sí/No. Si sí: cantidad de cigarrillos/día, años fumando"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Consumo de alcohol:</label>
+                        <textarea placeholder="Sí/No. Si sí: frecuencia y cantidad"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Consumo de sustancias psicoactivas:</label>
+                        <textarea placeholder="Sí/No. Si sí: tipo de sustancia"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Actividad física:</label>
+                        <textarea placeholder="Tipo, frecuencia, duración"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Alimentación:</label>
+                        <textarea placeholder="Descripción general, dietas especiales"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Exposiciones ocupacionales o ambientales:</label>
+                        <textarea placeholder="Químicos, radiación, etc."></textarea>
+                    </div>
+
+                    <h4>5. EXAMEN FÍSICO</h4>
+                    
+                    <div class="hc-section">
+                        <label>Peso:</label>
+                        <input type="number" id="peso" placeholder="kg" step="0.1" oninput="calcularIMC()">
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Talla:</label>
+                        <input type="number" id="talla" placeholder="cm" step="0.1" oninput="calcularIMC()">
+                    </div>
+
+                    <div class="hc-section">
+                        <label>IMC:</label>
+                        <input type="number" id="imc" placeholder="kg/m²" step="0.1" readonly style="background-color: #f0f0f0;">
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Presión arterial:</label>
+                        <input type="text" placeholder="ej: 120/80 mmHg">
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Frecuencia cardíaca:</label>
+                        <input type="number" placeholder="lpm">
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Examen físico general:</label>
+                        <textarea placeholder="Normal/Hallazgos"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Examen ginecológico (si aplica):</label>
+                        <textarea placeholder="Normal/Hallazgos"></textarea>
+                    </div>
+
+                    <h4>6. LABORATORIOS SOLICITADOS</h4>
+                    
+                    <div class="hc-section">
+                        <label>Laboratorios indicados:</label>
+                        <textarea placeholder="VIH, VDRL, HBsAg, Toxoplasma IgG/IgM, Rubéola IgG, Hemograma, Grupo y Rh, Glucemia, TSH (si aplica), Citología"></textarea>
+                    </div>
+
+                    <h4>7. ESQUEMA DE VACUNACIÓN</h4>
+                    
+                    <div class="hc-section">
+                        <label>Estado de vacunación:</label>
+                        <textarea placeholder="Rubéola (MMR), Tétanos (Td/Tdap), Influenza, Hepatitis B, COVID-19 - especificar si completo o pendientes"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Vacunas aplicadas hoy:</label>
+                        <textarea placeholder="Especificar cuáles"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Vacunas pendientes por aplicar:</label>
+                        <textarea placeholder="Especificar cuáles y cuándo"></textarea>
+                    </div>
+
+                    <h4>8. SUPLEMENTACIÓN PRESCRITA</h4>
+                    
+                    <div class="hc-section">
+                        <label>Ácido fólico:</label>
+                        <textarea placeholder="Dosis: 0.4-0.8 mg/día (riesgo bajo) o 4-5 mg/día (riesgo alto). Indicar dosis y justificación"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Hierro (si aplica):</label>
+                        <textarea placeholder="Dosis si hay anemia"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Otros suplementos:</label>
+                        <textarea placeholder="Vitamina D, etc."></textarea>
+                    </div>
+
+                    <h4>9. REVISIÓN DE MEDICAMENTOS</h4>
+                    
+                    <div class="hc-section">
+                        <label>Medicamentos teratógenos identificados:</label>
+                        <textarea placeholder="Isotretinoína, warfarina, IECA, ARA-II, estatinas, valproato, etc."></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Plan de manejo de medicamentos:</label>
+                        <textarea placeholder="Suspensión o cambio a alternativas seguras"></textarea>
+                    </div>
+
+                    <h4>10. CONTROL DE ENFERMEDADES CRÓNICAS</h4>
+                    
+                    <div class="hc-section">
+                        <label>Enfermedades crónicas identificadas y plan de optimización:</label>
+                        <textarea placeholder="Diabetes (meta HbA1c <6.5%), HTA (ajuste medicamentos), hipotiroidismo (meta TSH), etc."></textarea>
+                    </div>
+
+                    <h4>11. ASESORÍA GENÉTICA</h4>
+                    
+                    <div class="hc-section">
+                        <label>Necesidad de asesoría genética:</label>
+                        <textarea placeholder="Sí/No. Si sí: motivo (edad ≥35 años, antecedentes familiares, consanguinidad, etc.)"></textarea>
+                    </div>
+
+                    <h4>12. ANTICONCEPCIÓN DURANTE PERÍODO DE PREPARACIÓN</h4>
+                    
+                    <div class="hc-section">
+                        <label>Método anticonceptivo recomendado durante preparación (3-12 meses):</label>
+                        <textarea placeholder="DIU, implante, píldoras, inyección, preservativo - especificar método elegido y justificación"></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Duración estimada de período de preparación:</label>
+                        <textarea placeholder="Ej: 6 meses (completar vacunas + optimizar control de diabetes)"></textarea>
+                    </div>
+
+                    <h4>13. EDUCACIÓN Y RECOMENDACIONES</h4>
+                    
+                    <div class="hc-section">
+                        <label>Educación brindada:</label>
+                        <textarea placeholder="- Importancia de ácido fólico&#10;- Suspensión de tabaco, alcohol, drogas&#10;- Alimentación saludable&#10;- Ejercicio regular&#10;- Alcanzar peso saludable (IMC 18.5-24.9)&#10;- Importancia de control de enfermedades crónicas&#10;- Uso de anticoncepción durante preparación&#10;- Signos de alarma para consultar"></textarea>
+                    </div>
+
+                    <h4>14. PLAN DE SEGUIMIENTO</h4>
+                    
+                    <div class="hc-section">
+                        <label>Próxima cita de seguimiento:</label>
+                        <input type="date" value="">
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Objetivos para próxima cita:</label>
+                        <textarea placeholder="- Revisión de laboratorios&#10;- Completar vacunación&#10;- Evaluación de control de enfermedades crónicas&#10;- Evaluación de pérdida de peso (si aplica)&#10;- Suspensión de método anticonceptivo si está lista"></textarea>
+                    </div>
+
+                    <h4>15. CRITERIOS DE REFERENCIA</h4>
+                    
+                    <div class="hc-section">
+                        <label>Necesidad de referencia a especialista:</label>
+                        <textarea placeholder="Sí/No. Si sí: especialidad (endocrinología, genética, cardiología, etc.) y motivo"></textarea>
+                    </div>
+
+                    <hr style="margin: 2rem 0;">
+
+                    <div class="hc-section">
+                        <label>Nombre y firma del profesional:</label>
+                        <textarea placeholder=""></textarea>
+                    </div>
+
+                    <div class="hc-section">
+                        <label>Registro médico / Licencia profesional:</label>
+                        <textarea placeholder=""></textarea>
+                    </div>
+
+                </div>
+
+                <button class="btn copy-btn" onclick="copyFormatoHC()">📋 Copiar todo el formato</button>
+            </div>
+
+            <!-- CHECKLIST AUDITORÍA -->
+            <div class="card subsection" id="checklist">
+                <h3>Checklist de Auditoría - Documentación Completa</h3>
+                
+                <div class="alert alert-success">
+                    <strong>✓ Protección legal:</strong> Verificación de que la historia clínica incluye TODOS los elementos obligatorios según Resolución 3280/2018
+                </div>
+
+                <h4>Marcar los ítems documentados en la historia clínica:</h4>
+
+                <ul class="checklist">
+                    <li>Antecedentes personales completos (enfermedades, cirugías, medicamentos, alergias)</li>
+                    <li>Antecedentes familiares (diabetes, HTA, enfermedades genéticas)</li>
+                    <li>Antecedentes ginecoobstétricos (embarazos previos, complicaciones, método anticonceptivo)</li>
+                    <li>Hábitos y estilos de vida (tabaco, alcohol, drogas, ejercicio, alimentación)</li>
+                    <li>Exposiciones ocupacionales/ambientales</li>
+                    <li>Examen físico (peso, talla, IMC, PA, FC)</li>
+                    <li>Laboratorios solicitados según perfil de riesgo</li>
+                    <li>Revisión de esquema de vacunación</li>
+                    <li>Prescripción de ácido fólico (dosis según riesgo)</li>
+                    <li>Prescripción de hierro (si hay anemia)</li>
+                    <li>Identificación y manejo de medicamentos teratógenos</li>
+                    <li>Plan de optimización de enfermedades crónicas</li>
+                    <li>Evaluación de necesidad de asesoría genética</li>
+                    <li>Asesoría sobre anticoncepción durante período de preparación</li>
+                    <li>Educación sobre hábitos saludables y preparación para embarazo</li>
+                    <li>Plan de seguimiento (fecha de próxima cita)</li>
+                    <li>Criterios de referencia evaluados (si aplica)</li>
+                </ul>
+
+                <div class="highlight">
+                    <h4>Si todos los ítems están documentados:</h4>
+                    <p>✓ Historia clínica COMPLETA según Resolución 3280/2018</p>
+                    <p>✓ Protección legal en caso de auditoría</p>
+                    <p>✓ Atención integral y de calidad</p>
+                </div>
+            </div>
+<!-- RECURSOS PARA PROFESIONALES -->
+            <div class="card subsection" id="recursos-profesionales">
+                <h3>Recursos Descargables</h3>
+                <p>Material de apoyo para la consulta preconcepcional</p>
+
+                <div class="download-grid">
+                    <!-- Guía de Profesionales -->
+                    <div class="download-card">
+                        <div class="download-icon">📘</div>
+                        <h4>Guía para Profesionales</h4>
+                        <p>Manual completo con protocolos, dosis de suplementación, criterios de referencia y flujogramas de atención</p>
+                        <a href="Descargas/Guia_Digital_Profesionales.pdf" download>
+                            <button class="btn">Descargar PDF</button>
+                        </a>
+                    </div>
+
+                    <!-- Formato HC -->
+                    <div class="download-card">
+                        <div class="download-icon">📋</div>
+                        <h4>Formato Historia Clínica</h4>
+                        <p>Plantilla lista para implementar en tu sistema de información o usar en papel</p>
+                        <a href="Descargas/Formato_de_Historia_Clínica_Preconcepcional.docx" download>
+                            <button class="btn">Descargar DOCX</button>
+                        </a>
+                    </div>
+
+                    <!-- Folleto Mujeres -->
+                    <div class="download-card">
+                        <div class="download-icon">📄</div>
+                        <h4>Folleto para Mujeres</h4>
+                        <p>Material educativo para entregar a pacientes. Incluye información sobre preparación, ácido fólico y vacunas</p>
+                        <a href="Descargas/Tu-Derecho-a-una-Consulta-Preconcepcional-Mujer.pdf" download>
+                            <button class="btn">Descargar PDF</button>
+                        </a>
+                    </div>
+
+                    <!-- Folleto Hombres -->
+                    <div class="download-card">
+                        <div class="download-icon">📄</div>
+                        <h4>Folleto para Hombres</h4>
+                        <p>Material educativo específico para futuros padres. Explica la importancia de su participación y salud preconcepcional</p>
+                        <a href="Descargas/Tu-Derecho-a-una-Consulta-Preconcepcional-Hombre.pdf" download>
+                            <button class="btn">Descargar PDF</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FIN PROFESIONALES -->
+
+        <!-- SECCIÓN INSTITUCIONES -->
+        <div id="instituciones" class="section">
+            
+           <div class="hero-verde">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                    <div>
+                        <h2>Implementación Institucional</h2>
+                        <p>Guía para instituciones de salud que desean incorporar la consulta preconcepcional como estándar de atención</p>
+                    </div>
+                    <div>
+                        <img src="Imagenes/Hero-instituciones-1.png" alt="Institución de salud" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);">
+                    </div>
+                </div>
+            </div>
+
+            <!-- POR QUÉ LAS INSTITUCIONES DEBEN INCLUIR ESTO -->
+            <div class="card subsection" id="por-que-instituciones">
+                <h3>¿Por qué las instituciones deben incluir la consulta preconcepcional?</h3>
+                
+                <div class="highlight">
+                    <h4>Marco Legal</h4>
+                    <p>La <strong>Resolución 3280 de 2018</strong> establece la consulta preconcepcional como parte obligatoria de la Ruta Integral de Atención en Salud Materno Perinatal en Colombia.</p>
+                </div>
+
+                <h4>Beneficios para la institución:</h4>
+                
+                <div class="info-card" style="margin: 1rem 0; padding: 1.5rem; background: #e7f3ff; border-left: 4px solid #0066cc;">
+                    <h4 style="color: #0066cc; margin: 0 0 0.5rem 0;">📊 Mejora indicadores de calidad</h4>
+                    <p style="margin: 0;">Reducción de complicaciones materno-fetales, disminución de morbimortalidad perinatal, y mejores resultados en auditorías de calidad.</p>
+                </div>
+
+                <div class="info-card" style="margin: 1rem 0; padding: 1.5rem; background: #fff4e6; border-left: 4px solid #ff9800;">
+                    <h4 style="color: #ff9800; margin: 0 0 0.5rem 0;">💰 Ahorro en costos</h4>
+                    <p style="margin: 0;">Prevención es más económica que tratamiento de complicaciones. Reduce hospitalizaciones prolongadas y atención en UCI neonatal.</p>
+                </div>
+
+                <div class="info-card" style="margin: 1rem 0; padding: 1.5rem; background: #e8f5e9; border-left: 4px solid #4caf50;">
+                    <h4 style="color: #4caf50; margin: 0 0 0.5rem 0;">⚖️ Protección legal</h4>
+                    <p style="margin: 0;">Cumplimiento normativo documentado. Reducción de riesgo de demandas por mala práctica. Evidencia de atención basada en guías clínicas.</p>
+                </div>
+
+                <div class="info-card" style="margin: 1rem 0; padding: 1.5rem; background: #f3e5f5; border-left: 4px solid #9c27b0;">
+                    <h4 style="color: #9c27b0; margin: 0 0 0.5rem 0;">🎯 Satisfacción del paciente</h4>
+                    <p style="margin: 0;">Percepción de atención integral y preventiva. Empoderamiento de las pacientes en su salud reproductiva. Mayor adherencia a controles prenatales.</p>
+                </div>
+
+                <h4>Impacto en salud pública:</h4>
+                <ul>
+                    <li><strong>Reducción de defectos del tubo neural:</strong> Hasta 70% con suplementación oportuna de ácido fólico</li>
+                    <li><strong>Control de enfermedades crónicas:</strong> Mejor manejo de diabetes, HTA, epilepsia antes del embarazo</li>
+                    <li><strong>Prevención de complicaciones:</strong> Menor incidencia de preeclampsia, diabetes gestacional, parto prematuro</li>
+                    <li><strong>Optimización de recursos:</strong> Menos ingresos a UCI neonatal, menos hospitalizaciones prolongadas</li>
+                </ul>
+            </div>
+
+            <div class="card subsection">
+
+                <h4>🎓 Programa de Capacitación Sugerido</h4>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Semana 1: Fundamentos</h4>
+                        <ul>
+                            <li>Marco legal: Resolución 3280/2018</li>
+                            <li>Evidencia científica de beneficios</li>
+                            <li>Estructura de la consulta preconcepcional</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Semana 2: Contenido Clínico</h4>
+                        <ul>
+                            <li>Suplementación (ácido fólico, hierro)</li>
+                            <li>Esquemas de vacunación</li>
+                            <li>Identificación de teratógenos</li>
+                            <li>Manejo de enfermedades crónicas</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Semana 3: Documentación</h4>
+                        <ul>
+                            <li>Llenado correcto del formato HC</li>
+                            <li>Registro en sistema de información</li>
+                            <li>Criterios de referencia a especialistas</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Semana 4: Implementación</h4>
+                        <ul>
+                            <li>Casos clínicos prácticos</li>
+                            <li>Role-playing consultas</li>
+                            <li>Evaluación de competencias</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NORMATIVA -->
+            <div class="card subsection" id="normativa">
+                <h3>Normativa de Prestación del Servicio</h3>
+
+                <div class="alert alert-info">
+                    <strong>Base Legal:</strong> Resolución 3280 de 2018 - Ministerio de Salud y Protección Social
+                </div>
+
+                <h4>Requisitos para la prestación del servicio:</h4>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>1. Recurso Humano</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Médico general capacitado</strong> en consulta preconcepcional (mínimo 8 horas de capacitación)</li>
+                                <li><strong>Médico especialista</strong> (ginecólogo/obstetra) disponible para casos complejos</li>
+                                <li><strong>Personal de enfermería</strong> capacitado para educación en salud sexual y reproductiva</li>
+                                <li><strong>Disponibilidad de red de especialistas</strong> para referencia (endocrinología, genética, cardiología, etc.)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>2. Infraestructura</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Consultorio equipado</strong> con camilla, báscula, tallímetro, tensiómetro</li>
+                                <li><strong>Sistema de información en salud</strong> con registro de consulta preconcepcional</li>
+                                <li><strong>Acceso a historia clínica electrónica</strong> o formato físico estandarizado</li>
+                                <li><strong>Material educativo</strong> disponible (folletos, infografías)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>3. Disponibilidad de Servicios</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Laboratorio clínico</strong> con capacidad para exámenes básicos (hemograma, glucemia, VDRL, VIH, HBsAg, grupo sanguíneo)</li>
+                                <li><strong>Servicio de vacunación</strong> con disponibilidad de biológicos requeridos</li>
+                                <li><strong>Farmacia</strong> con suplementos (ácido fólico, hierro)</li>
+                                <li><strong>Red de referencia y contrarreferencia</strong> establecida</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>4. Procesos y Protocolos</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Protocolo institucional</strong> de consulta preconcepcional basado en Resolución 3280</li>
+                                <li><strong>Flujograma de atención</strong> desde solicitud hasta seguimiento</li>
+                                <li><strong>Criterios de referencia</strong> a especialistas claramente definidos</li>
+                                <li><strong>Sistema de agendamiento</strong> que priorice consulta preconcepcional</li>
+                                <li><strong>Mecanismo de seguimiento</strong> para garantizar continuidad</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>5. Indicadores de Calidad</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>La institución debe monitorear:</strong></p>
+                            <ul>
+                                <li><strong>Cobertura:</strong> % de mujeres en edad fértil que acceden a consulta preconcepcional</li>
+                                <li><strong>Oportunidad:</strong> Tiempo promedio entre solicitud y atención</li>
+                                <li><strong>Calidad del registro:</strong> % de historias clínicas con todos los campos diligenciados</li>
+                                <li><strong>Suplementación:</strong> % de pacientes que reciben ácido fólico</li>
+                                <li><strong>Vacunación:</strong> % de pacientes con esquema completo</li>
+                                <li><strong>Seguimiento:</strong> % de pacientes que asisten a cita de control</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Pasos para implementar en su institución:</h4>
+                <ol>
+                    <li><strong>Socialización con directivos:</strong> Presentar beneficios y marco legal</li>
+                    <li><strong>Conformar equipo líder:</strong> Designar responsables de implementación</li>
+                    <li><strong>Capacitación del personal:</strong> Usar material de esta página</li>
+                    <li><strong>Adaptar formato HC:</strong> Implementar en sistema de información</li>
+                    <li><strong>Campaña de difusión:</strong> Informar a pacientes sobre disponibilidad del servicio</li>
+                    <li><strong>Monitoreo continuo:</strong> Seguimiento de indicadores de calidad</li>
+                    <li><strong>Mejora continua:</strong> Ajustes basados en resultados</li>
+                </ol>
+
+                <div class="highlight">
+                    <h4>Contacto para asistencia técnica:</h4>
+                    <p>Para soporte en la implementación institucional, consulte con el Ministerio de Salud o con la Secretaría de Salud departamental.</p>
+                </div>
+            </div>
+            <!-- RECURSOS PARA INSTITUCIONES -->
+            <div class="card subsection" id="recursos-instituciones">
+                <h3>Recursos para Implementación</h3>
+
+                <h4>📚 Material de Capacitación para Profesionales</h4>
+                <div class="download-grid">
+                    <div class="download-card">
+                        <div class="download-icon">📘</div>
+                        <h4>Guía de Capacitación</h4>
+                        <p>Manual completo para capacitar al personal médico en consulta preconcepcional</p>
+                         <a href="Descargas/Guia_Capacitacion_Institucional.pdf" download>
+                            <button class="btn">Descargar PDF</button>
+                        </a>
+                    </div>
+
+                    <!-- Folleto Mujeres -->
+                    <div class="download-card">
+                        <div class="download-icon">📄</div>
+                        <h4>Folleto para Mujeres</h4>
+                        <p>Material educativo para entregar a pacientes. Incluye información sobre preparación, ácido fólico y vacunas</p>
+                        <a href="Descargas/Tu-Derecho-a-una-Consulta-Preconcepcional-Mujer.pdf" download>
+                            <button class="btn">Descargar PDF</button>
+                        </a>
+                    </div>
+
+                    <!-- Folleto Hombres -->
+                    <div class="download-card">
+                        <div class="download-icon">📄</div>
+                        <h4>Folleto para Hombres</h4>
+                        <p>Material educativo específico para futuros padres. Explica la importancia de su participación y salud preconcepcional</p>
+                        <a href="Descargas/Tu-Derecho-a-una-Consulta-Preconcepcional-Hombre.pdf" download>
+                            <button class="btn">Descargar PDF</button>
+                        </a>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="download-icon">📊</div>
+                        <h4>Infografía</h4>
+                        <p>Poster visual para carteleras institucionales</p>
+                        <a href="Descargas/infografia-consulta-preconcep.pdf" download>
+                            <button class="btn">Descargar PDF</button>
+                        </a>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="download-icon">📋</div>
+                        <h4>Checklist de Auditoría</h4>
+                        <p>Formato Excel para verificar cumplimiento de todos los ítems obligatorios</p>
+                        <a href="Descargas/CUIDADO_PRENATAL_2021_SDSPSSFT009_V.4.xlsm" download>
+                            <button class="btn">Descargar Excel</button>
+                        </a>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="download-icon">📘</div>
+                        <h4>Guía para Profesionales</h4>
+                        <p>Manual completo con protocolos, dosis de suplementación, criterios de referencia y flujogramas de atención</p>
+                        <a href="Descargas/Guia_Digital_Profesionales.pdf" download>
+                            <button class="btn">Descargar PDF</button>
+                        </a>
+                    </div>
+
+                    <!-- Formato HC -->
+                    <div class="download-card">
+                        <div class="download-icon">📋</div>
+                        <h4>Formato Historia Clínica</h4>
+                        <p>Plantilla lista para implementar en tu sistema de información o usar en papel</p>
+                        <a href="Descargas/Formato_de_Historia_Clínica_Preconcepcional.docx" download>
+                            <button class="btn">Descargar DOCX</button>
+                        </a>
+                    </div>
+                </div>
+        </div>
+        <!-- FIN INSTITUCIONES -->
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>Consulta Preconcepcional - Tu Derecho a un Embarazo Saludable</strong></p>
+        <p>Fundamentado en Resolución 3280 de 2018 - Ministerio de Salud y Protección Social de Colombia</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Proyecto académico - Universidad de La Sabana - 2026</p>
+    </footer>
+
+    <!-- CHATBOT FLOTANTE -->
+    <button id="chatbot-button" aria-label="Abrir chat">
+        💬
+    </button>
+
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+            <h3>Asistente Virtual</h3>
+            <button id="chatbot-close" aria-label="Cerrar chat">&times;</button>
+        </div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input-container">
+            <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta...">
+            <button id="chatbot-send">Enviar</button>
+        </div>
+    </div>
+
+    <!-- LLAMAR AL ARCHIVO JAVASCRIPT -->
+    <script src="Scripts.js"></script>
+    <script src="chatbot.js"></script>
+
+</body>
+</html>

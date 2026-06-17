@@ -116,6 +116,23 @@ function closeMenu() {
     btn.classList.remove('active');
 }
 
+// BUSCADOR DEL HEADER — colapsado/expandido
+function toggleHeaderSearch() {
+    const search = document.getElementById('headerSearch');
+    const input = document.getElementById('searchInput');
+    const wasActive = search.classList.contains('is-active');
+
+    search.classList.toggle('is-active');
+
+    if (!wasActive) {
+        // se acaba de abrir: enfocar el input
+        setTimeout(() => input.focus(), 150);
+    } else {
+        // se acaba de cerrar: limpiar el campo
+        input.value = '';
+    }
+}
+
 function scrollToSection(sectionId) {
     // Esperar a que la sección esté visible y el DOM se haya actualizado
     setTimeout(() => {

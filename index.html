@@ -22,7 +22,7 @@
                         <span></span>
                         <span></span>
                     </div>
-                    Menú
+                    <span class="hamburger-text">Menú</span>
                 </button>
                 
                 <!-- MENÚ DESPLEGABLE (SIN BUSCADOR AHORA) -->
@@ -106,10 +106,10 @@
                 <p>Tu derecho a un embarazo saludable y planificado</p>
             </div>
 
-            <!-- BUSCADOR A LA DERECHA -->
-            <div class="header-search">
+            <!-- BUSCADOR A LA DERECHA — colapsado, se expande al hacer clic -->
+            <div class="header-search" id="headerSearch">
                 <input type="text" id="searchInput" placeholder="Buscar..." onkeypress="if(event.key === 'Enter') { event.preventDefault(); buscarEnPagina(); }">
-<button onclick="buscarEnPagina()" style="background: none; border: none; cursor: pointer; font-size: 1.3rem; padding: 0; position: absolute; right: 1rem;">🔍</button>
+                <button class="header-search-toggle" onclick="toggleHeaderSearch()" aria-label="Buscar">🔍</button>
             </div>
         </div>
     </header>

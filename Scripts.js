@@ -517,8 +517,7 @@ function mostrarResultados(cantidad) {
     }
 }
 // ============================================
-// MODO DEMO — Bloqueo de interacción
-// Solo se activa si la URL tiene ?demo=true
+// MODO DEMO — Bloqueo de interacción mejorado
 // ============================================
 (function() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -536,49 +535,36 @@ function mostrarResultados(cantidad) {
 })();
 
 function activarModoDemo() {
-  // NO crear overlay — en su lugar, bloquear elementos específicamente
-  
-  // 1. Bloquear header (nav + menú + buscador)
+  // 1. Bloquear header (nav + menú + buscador) — sin cambiar apariencia
   const header = document.querySelector('header');
   if (header) {
     header.style.pointerEvents = 'none';
-    header.style.opacity = '0.6';
+    // NO cambiar opacity
   }
 
-  // 2. Bloquear contenedor principal
+  // 2. Bloquear contenedor principal — usar blur en lugar de opacity
   const container = document.querySelector('.container');
   if (container) {
     container.style.pointerEvents = 'none';
-    container.style.opacity = '0.4';
+    container.style.filter = 'blur(3px)';
+    // NO cambiar opacity — mantener visible
   }
 
   // 3. Bloquear footer
   const footer = document.querySelector('footer');
   if (footer) {
     footer.style.pointerEvents = 'none';
-    footer.style.opacity = '0.5';
+    footer.style.filter = 'blur(2px)';
   }
 
-  // 4. EXCEPTO: Chatbot completamente funcional
-  const chatbotButton = document.getElementById('chatbot-button');
-  const chatbotContainer = document.getElementById('chatbot-container');
-
-  if (chatbotButton) {
-    chatbotButton.style.pointerEvents = 'auto';
-    chatbotButton.style.opacity = '1';
-    chatbotButton.style.position = 'relative';
-    chatbotButton.style.zIndex = '9999';
+  // 4. EXCEPTO: El iframe del chatbot debe ser completamente visible y funcional
+  const iframe = document.querySelector('.asv-iframe-chatbot');
+  if (iframe) {
+    iframe.style.pointerEvents = 'auto';
+    iframe.style.filter = 'none';
+    iframe.style.position = 'relative';
+    iframe.style.zIndex = '9999';
   }
 
-  if (chatbotContainer) {
-    chatbotContainer.style.pointerEvents = 'auto';
-    chatbotContainer.style.opacity = '1';
-    chatbotContainer.style.position = 'relative';
-    chatbotContainer.style.zIndex = '9999';
-  }
-
-  // 5. Permitir scroll normal
-  // NO hacer overflow: hidden — dejar que funcione naturalmente
-
-  console.log('✓ Modo DEMO activado — Solo chatbot disponible. Scroll habilitado.');
+  console.log('✓ Modo DEMO activado — Solo chatbot disponible (blurred background).');
 }

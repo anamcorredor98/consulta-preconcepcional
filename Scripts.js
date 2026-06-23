@@ -516,3 +516,100 @@ function mostrarResultados(cantidad) {
         searchContainer.appendChild(mensaje);
     }
 }
+// ============================================
+// MODO DEMO — Bloqueo de interacción
+// Solo se activa si la URL tiene ?demo=true
+// ============================================
+(function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const isDemo = urlParams.get('demo') === 'true';
+
+  if (!isDemo) return; // Si no está en modo demo, no hace nada
+
+  // Esperar a que el DOM esté completamente cargado
+  document.addEventListener('DOMContentLoaded', function() {
+    activarModoDemo();
+  });
+
+  // Si el DOM ya está cargado (por ser script al final)
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    activarModoDemo();
+  }
+})();
+
+function activarModoDemo() {
+  // Crear overlay bloqueador
+  const overlay = document.createElement('div');
+  overlay.id = 'demo-overlay';
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: auto;
+    z-index: 9998;
+  `;
+  document.body.appendChild(overlay);
+
+  // Bloquear navegación
+  const header = document.querySelector('header');
+  if (header) {
+    header.style.pointerEvents = 'none';
+    header.style.opacity = '0.5';
+  }
+
+  // Bloquear búsqueda
+  const headerSearch = document.getElementById('headerSearch');
+  if (headerSearch) {
+    headerSearch.style.pointerEvents = 'none';
+  }
+
+  // Bloquear menú hamburguesa
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  if (dropdownMenu) {
+    dropdownMenu.style.pointerEvents = 'none';
+  }
+
+  // Bloquear contenedor principal
+  const container = document.querySelector('.container');
+  if (container) {
+    container.style.pointerEvents = 'none';
+    container.style.opacity = '0.4';
+  }
+
+  // Bloquear footer
+  const footer = document.querySelector('footer');
+  if (footer) {
+    footer.style.pointerEvents = 'none';
+    footer.style.opacity = '0.5';
+  }
+
+  // EXCEPTO: El chatbot debe estar completamente funcional
+  const chatbotButton = document.getElementById('chatbot-button');
+  const chatbotContainer = document.getElementById('chatbot-container');
+
+  if (chatbotButton) {
+    chatbotButton.style.pointerEvents = 'auto';
+    chatbotButton.style.opacity = '1';
+    chatbotButton.style.zIndex = '9999';
+  }
+
+  if (chatbotContainer) {
+    chatbotContainer.style.pointerEvents = 'auto';
+    chatbotContainer.style.opacity = '1';
+    chatbotContainer.style.zIndex = '9999';
+  }
+
+  // Bloquear scroll del body (solo permite scroll en el chatbot)
+  document.body.style.overflow = 'hidden';
+
+  // Permitir scroll dentro del chatbot si existe
+  const chatbotMessages = document.getElementById('chatbot-messages');
+  if (chatbotMessages) {
+    chatbotMessages.style.overflow = 'auto';
+  }
+
+  console.log('✓ Modo DEMO activado — Solo chatbot disponible');
+}

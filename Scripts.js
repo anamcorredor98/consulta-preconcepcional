@@ -516,8 +516,10 @@ function mostrarResultados(cantidad) {
         searchContainer.appendChild(mensaje);
     }
 }
+
 // ============================================
-// MODO DEMO — Bloqueo de interacción mejorado
+// MODO DEMO — Bloqueo simple
+// Solo desactiva menú, buscador y botones de navegación
 // ============================================
 (function() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -535,36 +537,34 @@ function mostrarResultados(cantidad) {
 })();
 
 function activarModoDemo() {
-  // 1. Bloquear header (nav + menú + buscador) — sin cambiar apariencia
-  const header = document.querySelector('header');
-  if (header) {
-    header.style.pointerEvents = 'none';
-    // NO cambiar opacity
+  // Bloquear menú hamburguesa
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  if (dropdownMenu) {
+    dropdownMenu.style.pointerEvents = 'none';
   }
 
-  // 2. Bloquear contenedor principal — usar blur en lugar de opacity
-  const container = document.querySelector('.container');
-  if (container) {
-    container.style.pointerEvents = 'none';
-    container.style.filter = 'blur(3px)';
-    // NO cambiar opacity — mantener visible
+  // Bloquear buscador
+  const headerSearch = document.getElementById('headerSearch');
+  if (headerSearch) {
+    headerSearch.style.pointerEvents = 'none';
   }
 
-  // 3. Bloquear footer
-  const footer = document.querySelector('footer');
-  if (footer) {
-    footer.style.pointerEvents = 'none';
-    footer.style.filter = 'blur(2px)';
-  }
+  // Bloquear todos los botones de navegación en el hero
+  // (Quiero ser mamá, Quiero ser papá, Soy profesional, Institucional)
+  const menuItems = document.querySelectorAll('.menu-item');
+  menuItems.forEach(item => {
+    item.style.pointerEvents = 'none';
+  });
 
-  // 4. EXCEPTO: El iframe del chatbot debe ser completamente visible y funcional
-  const iframe = document.querySelector('.asv-iframe-chatbot');
-  if (iframe) {
-    iframe.style.pointerEvents = 'auto';
-    iframe.style.filter = 'none';
-    iframe.style.position = 'relative';
-    iframe.style.zIndex = '9999';
-  }
+  // Bloquear el botón "Explorar información para pacientes →"
+  const botones = document.querySelectorAll('button, a[onclick*="showAnticonceptivosSection"], a[onclick*="showSection"]');
+  botones.forEach(btn => {
+    const onclick = btn.getAttribute('onclick') || '';
+    if (onclick.includes('showAnticonceptivosSection') || 
+        onclick.includes('showSection')) {
+      btn.style.pointerEvents = 'none';
+    }
+  });
 
-  console.log('✓ Modo DEMO activado — Solo chatbot disponible (blurred background).');
+  console.log('✓ Modo DEMO activado — Menú, buscador y botones de navegación deshabilitados.');
 }
